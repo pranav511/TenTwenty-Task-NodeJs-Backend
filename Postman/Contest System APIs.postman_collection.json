@@ -1,0 +1,303 @@
+{
+	"info": {
+		"_postman_id": "283430ef-6392-4b3c-bd21-45daf21545d4",
+		"name": "Contest System APIs",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "32191845"
+	},
+	"item": [
+		{
+			"name": "Contest System APIs",
+			"item": [
+				{
+					"name": "Contest System APIs",
+					"item": []
+				},
+				{
+					"name": "User registration",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"Admin User\",\r\n  \"email\": \"admin@example.com\",\r\n  \"password\": \"Admin@123\",\r\n  \"role\": \"admin\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8989/api/auth/register",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8989",
+							"path": [
+								"api",
+								"auth",
+								"register"
+							]
+						},
+						"description": "Registers a new user into the system (Normal, VIP, or Admin)."
+					},
+					"response": []
+				},
+				{
+					"name": "User Login",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"admin@gmail.com\",\r\n  \"password\": \"Admin@123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8989/api/auth/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8989",
+							"path": [
+								"api",
+								"auth",
+								"login"
+							]
+						},
+						"description": "Authenticates a registered user and returns a JWT token for authorization"
+					},
+					"response": []
+				},
+				{
+					"name": "Create Contest",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZSI6ImFkbWluIiwiZW1haWwiOiJhZG1pbkBleGFtcGxlLmNvbSIsImlhdCI6MTc2MjQzMTEzNiwiZXhwIjoxNzYyNDQ5MTM2fQ.Xb3di0pKLvH41hiK4lw4Mp4gjx6i0nWN3SFC8j5c9nQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"Normal Coding Challenge\",\r\n  \"description\": \"Basic level challenge for all normal users.\",\r\n  \"access_level\": \"normal\",\r\n  \"start_time\": \"2025-11-01 10:00:00\",\r\n  \"end_time\": \"2025-11-02 23:59:59\",\r\n  \"prize\": \"₹500\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8989/api/contests/create",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8989",
+							"path": [
+								"api",
+								"contests",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Contests",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwicm9sZSI6Imd1ZXN0IiwiZW1haWwiOiJndWVzdEBnbWFpbC5jb20iLCJpYXQiOjE3NjIwNTM0ODksImV4cCI6MTc2MjA3MTQ4OX0.8LvomOhSwG7ADYzsczyy1r5d7KT3DDdM0e3TnYMMq6w",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8989/api/contests/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8989",
+							"path": [
+								"api",
+								"contests",
+								""
+							]
+						},
+						"description": "Fetches all available contests (visible to the logged-in user)"
+					},
+					"response": []
+				},
+				{
+					"name": "Add Question",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZSI6ImFkbWluIiwiZW1haWwiOiJhZG1pbkBleGFtcGxlLmNvbSIsImlhdCI6MTc2MjQzMTEzNiwiZXhwIjoxNzYyNDQ5MTM2fQ.Xb3di0pKLvH41hiK4lw4Mp4gjx6i0nWN3SFC8j5c9nQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"contest_id\": 2,\r\n  \"question_text\": \"Which of the following are JavaScript frameworks?\",\r\n  \"question_type\": \"multi\",\r\n  \"options\": [\"React\", \"Angular\", \"Laravel\", \"Vue\"],\r\n  \"correct_option\": \"React,Angular,Vue\",\r\n  \"points\": 20\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8989/api/questions/add",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8989",
+							"path": [
+								"api",
+								"questions",
+								"add"
+							]
+						},
+						"description": "Allows Admin to add a question to a specific contest"
+					},
+					"response": []
+				},
+				{
+					"name": "Submit Answer",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwicm9sZSI6InZpcCIsImVtYWlsIjoidmlwQGdtYWlsLmNvbSIsImlhdCI6MTc2MjQzMTA2MiwiZXhwIjoxNzYyNDQ5MDYyfQ.cwb7l2cRXMACCViWWrqnuKmoXSYn5FyyEhv1ruBkgi4",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"contest_id\": 1,\r\n  \"answers\": [\r\n    {\r\n      \"question_id\": 1,\r\n      \"selected_option\": \"Vue\"\r\n    },\r\n    {\r\n      \"question_id\": 2,\r\n      \"selected_option\": \"Hyper Text Markup Language\"\r\n    },\r\n    {\r\n      \"question_id\": 3,\r\n      \"selected_option\": [\"React\", \"Angular\", \"Vue\"]\r\n    }\r\n  ]\r\n}\r\n\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8989/api/answers/submit",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8989",
+							"path": [
+								"api",
+								"answers",
+								"submit"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "User History",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Mywicm9sZSI6InVzZXIiLCJlbWFpbCI6Im5vcm1hbEBnbWFpbC5jb20iLCJpYXQiOjE3NjI0MzExNjksImV4cCI6MTc2MjQ0OTE2OX0._eFSZR0l097xEquMHMNAIkvk7lpsIzVV0fY9WzFqoAc",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8989/api/history",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8989",
+							"path": [
+								"api",
+								"history"
+							]
+						},
+						"description": "Fetches all contests a user has participated in, along with scores and prizes won"
+					},
+					"response": []
+				},
+				{
+					"name": "Leaderboard",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Mywicm9sZSI6InVzZXIiLCJlbWFpbCI6Im5vcm1hbEBnbWFpbC5jb20iLCJpYXQiOjE3NjI0MzExNjksImV4cCI6MTc2MjQ0OTE2OX0._eFSZR0l097xEquMHMNAIkvk7lpsIzVV0fY9WzFqoAc",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8989/api/leaderboard/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8989",
+							"path": [
+								"api",
+								"leaderboard",
+								"1"
+							]
+						},
+						"description": "Displays top users with highest scores for a specific contest."
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

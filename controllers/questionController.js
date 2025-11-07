@@ -7,6 +7,21 @@ exports.addQuestion = async (req, res) => {
     if (!contest_id || !question_text || !options || !correct_option)
       return res.status(400).json({ message: "Missing required fields" });
 
+    if (question_type === "single" && Array.isArray(correct_option)) {
+      return res.status(400).json({
+        success: false,
+        message: "Single type question cannot have multiple correct options"
+      });
+    }
+
+    if (question_type === "multi" && !Array.isArray(correct_option)) {
+      return res.status(400).json({
+        success: false,
+        message: "Multiple type question must have array of correct options"
+      });
+    }
+
+
     await db.query(
       `INSERT INTO questions (contest_id, question_text, question_type, options, correct_option, points)
        VALUES (?, ?, ?, ?, ?, ?)`,
